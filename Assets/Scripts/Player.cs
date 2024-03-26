@@ -1,18 +1,20 @@
 using UnityEngine;
 
-public class PlayerMover : MonoBehaviour
+public class Player : MonoBehaviour
 {
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private GroundChecker _groundChecker;
 
     private const string Speed = "Speed";
 
+    private Coin _coin;
     private Animator _animator;
     private Vector2 _moveInput;
     private Rigidbody2D _rigidbody;
     private bool _isFaceRight = true;
-    private bool _isGround = true;
-    
+    private bool _isGrounded;
+    private int _coinCount = 0;
 
     private void Start()
     {
@@ -28,6 +30,29 @@ public class PlayerMover : MonoBehaviour
         Jump();
     }
 
+    private void OnEnable()
+    {
+        _groundChecker.IsGrounded += SetGround;
+        _coin.TakeCoin += TakeCoin;
+    }
+
+    private void OnDisable()
+    {
+        _groundChecker.IsGrounded -= SetGround;
+        _coin.TakeCoin -= TakeCoin;
+    }
+
+    private void SetGround(bool isGrounded)
+    {
+        _isGrounded = isGrounded;
+    }
+
+    private void Jump()
+    {
+        if(Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+            _rigidbody.AddForce(new Vector2(_rigidbody.velocity.x, _jumpPower));
+    }
+
     private void Run()
     {
         _moveInput.x = Input.GetAxis("Horizontal");
@@ -37,12 +62,6 @@ public class PlayerMover : MonoBehaviour
     private void AnimatePlayer()
     {
         _animator.SetFloat(Speed, Mathf.Abs(_moveInput.x));
-    }
-
-    private void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space) && _isGround == true)
-            _rigidbody.AddForce(new Vector2(_rigidbody.velocity.x, _jumpPower));
     }
 
     private void Reflect()
@@ -57,15 +76,9 @@ public class PlayerMover : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void TakeCoin()
     {
-        if(collision.collider.CompareTag("Ground"))
-            _isGround = true;
-    }
-
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        if(collision.collider.CompareTag("Ground"))
-            _isGround = false;
+        _coinCount++;
+        Destroy(_coin);
     }
 }

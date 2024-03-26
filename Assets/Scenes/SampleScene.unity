@@ -1482,6 +1482,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1236039891}
   - component: {fileID: 1236039890}
+  - component: {fileID: 1236039892}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -1518,6 +1519,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1236039892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236039889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38080f432c6278946b0c35abb8f20f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1255048006
 GameObject:
   m_ObjectHideFlags: 0
@@ -5773,6 +5786,7 @@ GameObject:
   - component: {fileID: 2133598928}
   - component: {fileID: 2133598929}
   - component: {fileID: 2133598930}
+  - component: {fileID: 2133598931}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5944,3 +5958,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _jumpPower: 480
+  _groundChecker: {fileID: 0}
+--- !u!114 &2133598931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2133598924}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4619f80b30962a478925a0b298438f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

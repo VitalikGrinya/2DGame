@@ -2,11 +2,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    private const string Speed = "Speed";
+    
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
-    [SerializeField] private GroundChecker _groundChecker;
-
-    private const string Speed = "Speed";
 
     private Coin _coin;
     private Animator _animator;
@@ -32,14 +31,14 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        _groundChecker.IsGrounded += SetGround;
-        _coin.TakeCoin += TakeCoin;
+        GroundChecker.IsGrounded += SetGround;
+        Coin.TakeCoin += TakeCoin;
     }
 
     private void OnDisable()
     {
-        _groundChecker.IsGrounded -= SetGround;
-        _coin.TakeCoin -= TakeCoin;
+        GroundChecker.IsGrounded -= SetGround;
+        Coin.TakeCoin -= TakeCoin;
     }
 
     private void SetGround(bool isGrounded)
@@ -49,7 +48,7 @@ public class Player : MonoBehaviour
 
     private void Jump()
     {
-        if(Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
             _rigidbody.AddForce(new Vector2(_rigidbody.velocity.x, _jumpPower));
     }
 
@@ -79,6 +78,6 @@ public class Player : MonoBehaviour
     private void TakeCoin()
     {
         _coinCount++;
-        Destroy(_coin);
+        Debug.Log(_coinCount);
     }
 }

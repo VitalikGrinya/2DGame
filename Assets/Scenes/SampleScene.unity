@@ -5958,7 +5958,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _speed: 3
   _jumpPower: 480
-  _groundChecker: {fileID: 0}
+  _groundChecker: {fileID: 2133598931}
 --- !u!114 &2133598931
 MonoBehaviour:
   m_ObjectHideFlags: 0

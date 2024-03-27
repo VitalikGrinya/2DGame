@@ -1,5 +1,7 @@
 using UnityEngine;
 
+[RequireComponent(typeof(Animator))]
+
 public class Player : MonoBehaviour
 {
     private const string Speed = "Speed";

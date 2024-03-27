@@ -4,8 +4,8 @@ using UnityEngine.UIElements;
 
 public class CoinSpawner : MonoBehaviour
 {
-    [SerializeField] private List<Transform> _coinSpawn;
-    [SerializeField] private Coin _coin;
+    [SerializeField] private List<Transform> _spawnPoint;
+    [SerializeField] private Coin _coinPrefab;
 
     private void Start()
     {
@@ -14,15 +14,15 @@ public class CoinSpawner : MonoBehaviour
 
     private void Spawn()
     {
-        for (int i = 0; i < _coinSpawn.Count; i++)
+        for (int i = 0; i < _spawnPoint.Count; i++)
         {
-            int spawnPoint = Random.Range(0, _coinSpawn.Count);
+            int spawnPoint = Random.Range(0, _spawnPoint.Count);
 
-            Transform currentSpawn = _coinSpawn[spawnPoint];
+            Transform currentSpawn = _spawnPoint[spawnPoint];
 
-            var coin = Instantiate(_coin, currentSpawn.position, Quaternion.identity);
+            var coin = Instantiate(_coinPrefab, currentSpawn.position, Quaternion.identity);
 
-            _coinSpawn.Remove(currentSpawn);
+            _spawnPoint.Remove(currentSpawn);
         }
     }
 }

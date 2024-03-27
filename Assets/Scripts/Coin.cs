@@ -3,14 +3,11 @@ using UnityEngine;
 
 public class Coin : MonoBehaviour
 {
-    public static event Action TakeCoin;
+    public event Action TakedCoin;
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if(collider.TryGetComponent<Player>(out Player player))
-        {
-            Destroy(gameObject);
-            TakeCoin?.Invoke();
-        }
+        Destroy(gameObject);
+        TakedCoin?.Invoke();
     }
 }

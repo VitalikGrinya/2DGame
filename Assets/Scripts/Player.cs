@@ -6,14 +6,12 @@ public class Player : MonoBehaviour
     
     [SerializeField] private float _speed;
     [SerializeField] private float _jumpPower;
+    [SerializeField] private GroundDetecter _groundChecker;
 
-    private Coin _coin;
     private Animator _animator;
-    private Vector2 _moveInput;
     private Rigidbody2D _rigidbody;
     private bool _isFaceRight = true;
     private bool _isGrounded;
-    private int _coinCount = 0;
 
     private void Start()
     {
@@ -31,14 +29,12 @@ public class Player : MonoBehaviour
 
     private void OnEnable()
     {
-        GroundChecker.IsGrounded += SetGround;
-        Coin.TakeCoin += TakeCoin;
+        _groundChecker.IsGrounded += SetGround;
     }
 
     private void OnDisable()
     {
-        GroundChecker.IsGrounded -= SetGround;
-        Coin.TakeCoin -= TakeCoin;
+        _groundChecker.IsGrounded -= SetGround;
     }
 
     private void SetGround(bool isGrounded)
@@ -49,35 +45,37 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
-            _rigidbody.AddForce(new Vector2(_rigidbody.velocity.x, _jumpPower));
+            _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpPower);
     }
 
     private void Run()
     {
-        _moveInput.x = Input.GetAxis("Horizontal");
-        _rigidbody.velocity = new Vector2(_moveInput.x * _speed, _rigidbody.velocity.y);
+        _rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * _speed, _rigidbody.velocity.y);
     }
 
     private void AnimatePlayer()
     {
-        _animator.SetFloat(Speed, Mathf.Abs(_moveInput.x));
+        _animator.SetFloat(Speed, Mathf.Abs(Input.GetAxis("Horizontal")));
     }
 
     private void Reflect()
     {
-        if (_moveInput.x > 0 && _isFaceRight == false || _moveInput.x < 0 && _isFaceRight == true)
+        if (Input.GetAxis("Horizontal") > 0 && _isFaceRight == true)
         {
-            Vector2 transformScale = transform.localScale;
-            transformScale.x *= -1;
-            transform.localScale = transformScale;
+            var transformRotation = transform.localRotation;
+            transformRotation.y = 0;
+            transform.localRotation = transformRotation;
 
             _isFaceRight = !_isFaceRight;
         }
-    }
 
-    private void TakeCoin()
-    {
-        _coinCount++;
-        Debug.Log(_coinCount);
+        if(Input.GetAxis("Horizontal") < 0 && _isFaceRight == false)
+        {
+            var transformRotation = transform.localRotation;
+            transformRotation.y = 180;
+            transform.localRotation = transformRotation;
+
+            _isFaceRight = !_isFaceRight;
+        }
     }
 }

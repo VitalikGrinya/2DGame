@@ -6,22 +6,20 @@ public class Wallet : MonoBehaviour
 
     private float _coinCount;
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collider.TryGetComponent<Coin>(out Coin coin))
-        {
+        if (collision.TryGetComponent<Coin>(out Coin coin))
             TakedCoin();
-        }
     }
 
     private void OnEnable()
     {
-        _coinPrefab.TakedCoin += TakedCoin;
+        _coinPrefab.Taked += TakedCoin;
     }
 
     private void OnDisable()
     {
-        _coinPrefab.TakedCoin -= TakedCoin;
+        _coinPrefab.Taked -= TakedCoin;
     }
 
     private void TakedCoin()

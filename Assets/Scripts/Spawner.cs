@@ -2,10 +2,10 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.UIElements;
 
-public class CoinSpawner : MonoBehaviour
+public class Spawner : MonoBehaviour
 {
     [SerializeField] private List<Transform> _spawnPoint;
-    [SerializeField] private Coin _coinPrefab;
+    [SerializeField] private Item _itemPrefab;
 
     private void Start()
     {
@@ -20,7 +20,7 @@ public class CoinSpawner : MonoBehaviour
 
             Transform currentSpawn = _spawnPoint[spawnPoint];
 
-            var coin = Instantiate(_coinPrefab, currentSpawn.position, Quaternion.identity);
+            var item = Instantiate(_itemPrefab, currentSpawn.position, Quaternion.identity);
 
             _spawnPoint.Remove(currentSpawn);
         }

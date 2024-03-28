@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Reflect();
-        AnimatePlayer();
+        AnimateMovement();
         Run();
         Jump();
     }
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         _rigidbody.velocity = new Vector2(Input.GetAxis("Horizontal") * _speed, _rigidbody.velocity.y);
     }
 
-    private void AnimatePlayer()
+    private void AnimateMovement()
     {
         _animator.SetFloat(Speed, Mathf.Abs(Input.GetAxis("Horizontal")));
     }

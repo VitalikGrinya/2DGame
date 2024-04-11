@@ -1,23 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
 {
-    [SerializeField] private Health _playerHealth;
+    [SerializeField] private HealthValueChanger _healthChanger;
+    [SerializeField] private float _damageValue = 25;
+    [SerializeField] private Health _health;
 
-    private float _damageCount = 1;
-    private float _playerHealthCount;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent<Health>(out Health health))
+        if(collision.TryGetComponent<Player>(out Player player))
         {
-            Damage();
-        }
-    }
+            _healthChanger.TakeDamage(_damageValue);
 
-    public float Damage()
-    {
-        return _damageCount;
+            if(_health.CurrentHealth == 0)
+                Destroy(collision.gameObject);
+        }
     }
 }

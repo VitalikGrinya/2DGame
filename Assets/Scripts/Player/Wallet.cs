@@ -9,17 +9,10 @@ public class Wallet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent<Coin>(out Coin coin))
+        {
+            Destroy(collision.gameObject);
             TakedCoin();
-    }
-
-    private void OnEnable()
-    {
-        _coinPrefab.Taked += TakedCoin;
-    }
-
-    private void OnDisable()
-    {
-        _coinPrefab.Taked -= TakedCoin;
+        }
     }
 
     private void TakedCoin()

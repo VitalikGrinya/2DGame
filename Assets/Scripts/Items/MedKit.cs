@@ -3,14 +3,7 @@ using UnityEngine;
 
 public class MedKit : MonoBehaviour
 {
-    public event Action Taked;
+    [SerializeField] private float _healingValue = 10;
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if (!collision.TryGetComponent<Enemy>(out Enemy enemy) && !collision.TryGetComponent<Wallet>(out Wallet wallet))
-        //{
-        //    Destroy(gameObject);
-        //    Taked?.Invoke();
-        //}
-    }
+    public float HealingValue => _healingValue;
 }

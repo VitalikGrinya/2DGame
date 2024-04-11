@@ -2,30 +2,31 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
-    private float _hpCount = 3;
-    private float _maxHpCount = 3;
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.TryGetComponent<MedKit>(out MedKit medKit) && _hpCount < _maxHpCount)
-        {
-            Destroy(collision.gameObject);
-            TakedMedKit();
-        }
+    [SerializeField] private HealthValueChanger _healthChanger;
 
-        if(collision.TryGetComponent<EnemyAttack>(out EnemyAttack enemyAttack))
-        {
-            _hpCount -= enemyAttack.Damage();
-            Debug.Log(_hpCount);
-        }
+    private MedKit _medKit;
+
+    public float CurrentHealth { get; private set; }
+    public float MaxHealth { get; private set; } = 100;
+
+    private void Awake()
+    {
+        CurrentHealth = MaxHealth;
     }
 
-    private void TakedMedKit()
+
+    public void SetMaxHealth(float health) => MaxHealth = health;
+    public void SetCurrentHealth(float health) => CurrentHealth = health;
+
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        _hpCount++;
-
-        if (_hpCount > _maxHpCount)
-            _hpCount = _maxHpCount;
-
-        Debug.Log(_hpCount);
+        if (collision.TryGetComponent<MedKit>(out MedKit medKit))
+        {
+            if (CurrentHealth < MaxHealth)
+            {
+                Destroy(collision.gameObject);
+                _healthChanger.TakeHeal(medKit.HealingValue);
+            }
+        }
     }
 }

@@ -8,8 +8,8 @@ public class HealthChanger : MonoBehaviour
 
     public event Action Change;
 
-    private float CurrentEnemyHealth => _enemyHealth.CurrentHealth;
-    private float MaxEnemyHealth => _enemyHealth.MaxHealth;
+    private float CurrentHealth => _enemyHealth.CurrentHealth;
+    private float MaxHealth => _enemyHealth.MaxHealth;
 
     private void Awake()
     {
@@ -18,13 +18,7 @@ public class HealthChanger : MonoBehaviour
 
     public void TakeDamage(float damage)
     {
-        _enemyHealth.SetCurrentHealth(Mathf.Clamp(CurrentEnemyHealth - damage, 0, MaxEnemyHealth));
+        _enemyHealth.SetCurrentHealth(Mathf.Clamp(CurrentHealth - damage, 0, MaxHealth));
         Change?.Invoke();
-    }
-
-    public void TakeHeal(float heal)
-    {
-        _enemyHealth.SetCurrentHealth(Mathf.Clamp(CurrentEnemyHealth + heal, 0, MaxEnemyHealth));
-        Change?.Invoke();
-    }
+    }    
 }

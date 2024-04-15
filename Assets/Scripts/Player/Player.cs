@@ -10,7 +10,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpPower;
     [SerializeField] private GroundDetecter _groundChecker;
 
-    private Health _health;
     private Animator _animator;
     private Rigidbody2D _rigidbody;
     private bool _isFaceRight = true;
@@ -25,8 +24,8 @@ public class Player : MonoBehaviour
     private void Update()
     {
         Reflect();
-        AnimateMovement();
         Run();
+        AnimateMovement();
         Jump();
     }
 

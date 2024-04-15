@@ -4,8 +4,6 @@ public class Health : MonoBehaviour
 {
     [SerializeField] private HealthValueChanger _healthChanger;
 
-    private MedKit _medKit;
-
     public float CurrentHealth { get; private set; }
     public float MaxHealth { get; private set; } = 100;
 
@@ -14,8 +12,6 @@ public class Health : MonoBehaviour
         CurrentHealth = MaxHealth;
     }
 
-
-    public void SetMaxHealth(float health) => MaxHealth = health;
     public void SetCurrentHealth(float health) => CurrentHealth = health;
 
     private void OnTriggerEnter2D(Collider2D collision)

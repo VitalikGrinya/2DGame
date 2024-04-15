@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class EnemyAttack : MonoBehaviour
@@ -13,7 +12,7 @@ public class EnemyAttack : MonoBehaviour
         {
             _healthChanger.TakeDamage(_damageValue);
 
-            if(_health.CurrentHealth == 0)
+            if (_health.CurrentHealth == 0)
                 Destroy(collision.gameObject);
         }
     }

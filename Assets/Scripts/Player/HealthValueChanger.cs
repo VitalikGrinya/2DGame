@@ -6,8 +6,6 @@ public class HealthValueChanger : MonoBehaviour
 {
     [SerializeField] private Health _health;
 
-    private MedKit _medKit;
-
     public event Action Change;
 
     private float CurrentHealth => _health.CurrentHealth;

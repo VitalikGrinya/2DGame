@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 [RequireComponent(typeof(Slider))]
-public class EnemyHealthBar : MonoBehaviour
+public class EnemyBar : MonoBehaviour
 {
     [SerializeField] private EnemyHealth _health;
     [SerializeField] private HealthChanger _valueChanger;
@@ -40,7 +40,7 @@ public class EnemyHealthBar : MonoBehaviour
         _valueChanger.Change -= SetSliderValue;
     }
 
-    private float CurrentValue => _health.CurrentHealth;
+    private float CurrentHealth => _health.CurrentHealth;
     private float MaxHealth => _health.MaxHealth;
 
     private void SetSliderValue()
@@ -57,9 +57,9 @@ public class EnemyHealthBar : MonoBehaviour
     {
         var wait = new WaitForSeconds(_value);
 
-        while (_bar.value != CurrentValue)
+        while (_bar.value != CurrentHealth)
         {
-            _bar.value = Mathf.MoveTowards(_bar.value, CurrentValue, _interpolationValue);
+            _bar.value = Mathf.MoveTowards(_bar.value, CurrentHealth, _interpolationValue);
             yield return wait;
         }
     }

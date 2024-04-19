@@ -10,7 +10,7 @@ public class Vampirism : MonoBehaviour
     private int _stillHealthValue = 10;
     private int _timeSteal = 6;
     private int _timeCoroutine = 1;
-    private Coroutine _stealHealth;
+    private Coroutine _coroutine;
     private Collider2D _collider;
 
     private void Awake()
@@ -20,10 +20,10 @@ public class Vampirism : MonoBehaviour
 
     public void UseAbility()
     {
-        if (_stealHealth != null)
-            StopCoroutine(_stealHealth);
+        if (_coroutine != null)
+            StopCoroutine(_coroutine);
 
-        _stealHealth = StartCoroutine(StealHealth());
+        _coroutine = StartCoroutine(StealHealth());
     }
 
     private IEnumerator StealHealth()

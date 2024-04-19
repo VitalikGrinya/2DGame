@@ -1,9 +1,9 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Animator))]
-
 public class Player : MonoBehaviour
 {
+    private const string IsJump = "IsJump";
     private const string Speed = "Speed";
     
     [SerializeField] private float _speed;
@@ -47,7 +47,14 @@ public class Player : MonoBehaviour
     private void Jump()
     {
         if (Input.GetKeyDown(KeyCode.Space) && _isGrounded)
+        {
+            _animator.SetBool(IsJump, _isGrounded);
             _rigidbody.velocity = new Vector2(_rigidbody.velocity.x, _jumpPower);
+        }
+        else
+        {
+            _animator.SetBool(IsJump, !_isGrounded);
+        }
     }
 
     private void Run()

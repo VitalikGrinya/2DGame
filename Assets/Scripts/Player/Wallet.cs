@@ -1,10 +1,11 @@
 using UnityEngine;
+using TMPro;
 
 public class Wallet : MonoBehaviour
 {
-    [SerializeField] private Coin _coinPrefab;
+    [SerializeField] private TMP_Text _coinScore;
 
-    private float _coinCount;
+    private int _coinCount = 0;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -18,6 +19,6 @@ public class Wallet : MonoBehaviour
     private void TakedCoin()
     {
         _coinCount++;
-        Debug.Log(_coinCount);
+        _coinScore.text = "x " + _coinCount.ToString();
     }
 }

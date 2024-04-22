@@ -5,7 +5,7 @@ public class Vampirism : MonoBehaviour
 {
     [SerializeField] private float _radius = 5f;
     [SerializeField] private LayerMask _layerEnemy;
-    [SerializeField ]private HealthValueChanger _playerHealth;
+    [SerializeField] private HealthValueChanger _playerHealth;
 
     private int _stillHealthValue = 10;
     private int _timeSteal = 6;
@@ -30,10 +30,10 @@ public class Vampirism : MonoBehaviour
     {
         WaitForSeconds delay = new WaitForSeconds(_timeCoroutine);
 
+        _collider = Physics2D.OverlapCircle(transform.position, _radius, _layerEnemy);
+
         for (int i = 0; i < _timeSteal * Time.deltaTime; i++)
         {
-            _collider = Physics2D.OverlapCircle(transform.position, _radius, _layerEnemy);
-
             if (_collider == null)
             {
                 yield break;

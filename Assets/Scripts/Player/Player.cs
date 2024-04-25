@@ -23,9 +23,9 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        AnimateMovement();
         Reflect();
         Run();
-        AnimateMovement();
         Jump();
     }
 

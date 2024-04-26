@@ -4,11 +4,8 @@ using UnityEngine;
 
 public class Vampirism : MonoBehaviour
 {
-    [SerializeField] private float _radius = 5f;
-    [SerializeField] private LayerMask _layerEnemy;
     [SerializeField] private HealthValueChanger _playerHealth;
     [SerializeField] private List<HealthChanger> _enemiesHealths;
-    [SerializeField] private HealthChanger _enemyHealth;
     [SerializeField] private VampirismZone _vampireRing;
 
     private int _damage = 10;
@@ -16,26 +13,10 @@ public class Vampirism : MonoBehaviour
     private int _timeSteal = 6;
     private int _ringTime = 5;
     private int _timeCoroutine = 1;
+    private bool _isEnemyHere;
     private Coroutine _coroutine;
-    private Collider2D _collider;
 
-    private void Update()
-    {
-        _collider = Physics2D.OverlapCircle(transform.position, _radius, _layerEnemy);
-
-        if (!_collider)
-        {
-            _vampireRing.gameObject.SetActive(false);
-            _enemiesHealths.Remove(_enemyHealth);
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            UseAbility();
-        }
-    }
-
-    private void UseAbility()
+    public void UseAbility()
     {
         if (_coroutine != null)
         {
@@ -45,23 +26,40 @@ public class Vampirism : MonoBehaviour
         _coroutine = StartCoroutine(StealHealth());
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out HealthChanger enemyHealth))
+        {
+            _isEnemyHere = true;
+            _vampireRing.gameObject.SetActive(true);
+            _enemiesHealths.Add(enemyHealth);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.TryGetComponent(out HealthChanger enemyHealth))
+        {
+            _isEnemyHere = false;
+            _vampireRing.gameObject.SetActive(false);
+            _enemiesHealths.Remove(enemyHealth);
+        }
+    }
+
     private IEnumerator StealHealth()
     {
         _heal = _damage / 2;
 
         WaitForSeconds delay = new WaitForSeconds(_timeCoroutine);
 
-        if (_collider)
-            _enemiesHealths.Add(_enemyHealth);
-
         for (int i = 0; i < _timeSteal; i++)
         {
-            if (_collider.TryGetComponent(out _enemyHealth))
+            if (_isEnemyHere == true)
             {
-                _vampireRing.gameObject.SetActive(true);
-
                 for (int j = 0; j < _enemiesHealths.Count; j++)
+                {
                     _enemiesHealths[j].TakeDamage(_damage);
+                }
 
                 _playerHealth.TakeHeal(_heal);
 
@@ -70,7 +68,7 @@ public class Vampirism : MonoBehaviour
                     _vampireRing.gameObject.SetActive(false);
                 }
             }
-            else
+            else 
             {
                 yield break;
             }

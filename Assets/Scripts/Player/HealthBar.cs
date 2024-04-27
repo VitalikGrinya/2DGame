@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     [SerializeField] private Health _health;
-    [SerializeField] private HealthValueChanger _valueChanger;
     [SerializeField] private float _value;
     [SerializeField] private float _interpolationValue;
 
@@ -32,12 +31,12 @@ public class HealthBar : MonoBehaviour
 
     private void OnEnable()
     {
-        _valueChanger.Change += SetSliderValue;
+        _health.Change += SetSliderValue;
     }
 
     private void OnDisable()
     {
-        _valueChanger.Change -= SetSliderValue;
+        _health.Change -= SetSliderValue;
     }
 
     private float CurrentValue => _health.CurrentHealth;

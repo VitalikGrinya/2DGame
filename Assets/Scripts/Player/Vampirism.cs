@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class Vampirism : MonoBehaviour
 {
-    [SerializeField] private HealthValueChanger _playerHealth;
-    [SerializeField] private List<HealthChanger> _enemiesHealths;
+    [SerializeField] private Health _playerHealth;
+    [SerializeField] private List<EnemyHealth> _enemiesHealths;
     [SerializeField] private VampirismZone _vampireRing;
 
     private int _damage = 10;
@@ -28,7 +28,7 @@ public class Vampirism : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out HealthChanger enemyHealth))
+        if (collision.TryGetComponent(out EnemyHealth enemyHealth))
         {
             _isEnemyHere = true;
             _vampireRing.gameObject.SetActive(true);
@@ -38,7 +38,7 @@ public class Vampirism : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.TryGetComponent(out HealthChanger enemyHealth))
+        if (collision.TryGetComponent(out EnemyHealth enemyHealth))
         {
             _isEnemyHere = false;
             _vampireRing.gameObject.SetActive(false);
@@ -52,7 +52,7 @@ public class Vampirism : MonoBehaviour
 
         WaitForSeconds delay = new WaitForSeconds(_timeCoroutine);
 
-        for (int i = 0; i < _timeSteal; i++)
+        for (int i = 0; i < _timeSteal * Time.deltaTime; i++)
         {
             if (_isEnemyHere == true)
             {
@@ -67,10 +67,6 @@ public class Vampirism : MonoBehaviour
                 {
                     _vampireRing.gameObject.SetActive(false);
                 }
-            }
-            else 
-            {
-                yield break;
             }
 
             yield return delay;

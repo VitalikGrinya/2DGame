@@ -380,7 +380,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1735210309}
-  _healthChange: {fileID: 1735210308}
   _damageValue: 100
   _enemyCounter: {fileID: 612271047}
 --- !u!1 &99691976
@@ -459,7 +458,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1066f4c036804a241bfabf2ea0b48ddd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerHealth: {fileID: 1029464764}
+  _playerHealth: {fileID: 1029464763}
   _enemiesHealths: []
   _vampireRing: {fileID: 1257706413}
 --- !u!58 &112360016
@@ -1728,7 +1727,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 697366786}
-  _valueChanger: {fileID: 697366785}
   _value: 0.01
   _interpolationValue: 10
 --- !u!1 &570680263
@@ -2242,7 +2240,6 @@ GameObject:
   - component: {fileID: 697366784}
   - component: {fileID: 697366781}
   - component: {fileID: 697366786}
-  - component: {fileID: 697366785}
   m_Layer: 3
   m_Name: PossumEnemy
   m_TagString: Untagged
@@ -2435,7 +2432,7 @@ MonoBehaviour:
   - {fileID: 874654271}
   _player: {fileID: 1029464760}
   _territory: {fileID: 2030532366}
-  _speed: 0
+  _speed: 3
 --- !u!114 &697366784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2487,19 +2484,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &697366785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 697366773}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91f8290c2ab9f349aaafae7aef17650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyHealth: {fileID: 697366786}
 --- !u!114 &697366786
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2780,7 +2764,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1029464763}
-  _valueChanger: {fileID: 1029464764}
   _value: 0.01
   _interpolationValue: 10
 --- !u!1 &874654270
@@ -3196,7 +3179,6 @@ GameObject:
   - component: {fileID: 1029464760}
   - component: {fileID: 1029464762}
   - component: {fileID: 1029464763}
-  - component: {fileID: 1029464764}
   - component: {fileID: 1029464765}
   m_Layer: 0
   m_Name: Health
@@ -3277,20 +3259,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdec7edb630668246a954df710fb071f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthChanger: {fileID: 1029464764}
---- !u!114 &1029464764
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1029464759}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b532b2ec9c08eb419a73e08ffdf7d01, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _health: {fileID: 1029464763}
 --- !u!95 &1029464765
 Animator:
   serializedVersion: 5
@@ -3328,7 +3296,6 @@ GameObject:
   - component: {fileID: 1030508185}
   - component: {fileID: 1030508180}
   - component: {fileID: 1030508184}
-  - component: {fileID: 1030508183}
   m_Layer: 3
   m_Name: PigEnemy
   m_TagString: Untagged
@@ -3356,7 +3323,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.14, y: 7.67}
+  m_AnchoredPosition: {x: -4.75, y: -9.24}
   m_SizeDelta: {x: 0.64, y: 0.35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!50 &1030508176
@@ -3500,7 +3467,7 @@ MonoBehaviour:
   - {fileID: 2005662355}
   _player: {fileID: 1029464760}
   _territory: {fileID: 50402439}
-  _speed: 0
+  _speed: 4
 --- !u!95 &1030508181
 Animator:
   serializedVersion: 5
@@ -3522,19 +3489,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1030508183
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1030508174}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91f8290c2ab9f349aaafae7aef17650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyHealth: {fileID: 1030508184}
 --- !u!114 &1030508184
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8427,7 +8381,6 @@ GameObject:
   - component: {fileID: 1358924150}
   - component: {fileID: 1358924151}
   - component: {fileID: 1358924152}
-  - component: {fileID: 1358924153}
   - component: {fileID: 1358924154}
   m_Layer: 0
   m_Name: AttackPlayer
@@ -8508,22 +8461,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa5db9f4ef322a42a2682251456037f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthChanger: {fileID: 1029464764}
   _damageValue: 1
   _health: {fileID: 1029464763}
---- !u!114 &1358924153
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1358924149}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdec7edb630668246a954df710fb071f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthChanger: {fileID: 1029464764}
 --- !u!95 &1358924154
 Animator:
   serializedVersion: 5
@@ -8680,7 +8619,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _health: {fileID: 1030508184}
-  _valueChanger: {fileID: 1030508183}
   _value: 0.01
   _interpolationValue: 10
 --- !u!1 &1455005133
@@ -8949,7 +8887,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1735210310}
   - component: {fileID: 1735210309}
-  - component: {fileID: 1735210308}
   m_Layer: 3
   m_Name: Enemies
   m_TagString: Untagged
@@ -8957,19 +8894,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1735210308
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1735210307}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f91f8290c2ab9f349aaafae7aef17650, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _enemyHealth: {fileID: 1735210309}
 --- !u!114 &1735210309
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9010,7 +8934,6 @@ GameObject:
   - component: {fileID: 1781096763}
   - component: {fileID: 1781096764}
   - component: {fileID: 1781096765}
-  - component: {fileID: 1781096766}
   - component: {fileID: 1781096767}
   m_Layer: 0
   m_Name: AttackPlayer
@@ -9091,22 +9014,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ffa5db9f4ef322a42a2682251456037f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthChanger: {fileID: 1029464764}
   _damageValue: 2
   _health: {fileID: 1029464763}
---- !u!114 &1781096766
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1781096762}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bdec7edb630668246a954df710fb071f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _healthChanger: {fileID: 1029464764}
 --- !u!95 &1781096767
 Animator:
   serializedVersion: 5
@@ -9457,7 +9366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2133598924}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.12, y: 2.08, z: 0}
+  m_LocalPosition: {x: -30.44, y: 3.33, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -4,7 +4,6 @@ using TMPro;
 public class PlayerAttack : MonoBehaviour
 {
     [SerializeField] private EnemyHealth _health;
-    [SerializeField] private HealthChanger _healthChange;
     [SerializeField] private float _damageValue = 15;
     [SerializeField] private TextMeshProUGUI _enemyCounter;
 
@@ -14,7 +13,7 @@ public class PlayerAttack : MonoBehaviour
     {
         if (collision.TryGetComponent<EnemyHealth>(out EnemyHealth enemy))
         {
-            _healthChange.TakeDamage(_damageValue);
+            _health.TakeDamage(_damageValue);
 
             if(_health.CurrentHealth == 0)
             {

@@ -9,9 +9,9 @@ public class Vampirism : MonoBehaviour
     [SerializeField] private VampirismZone _vampireRing;
 
     private int _damage = 10;
-    private int _heal;
+    private int _heal = 5;
     private int _timeSteal = 6;
-    private int _ringTime = 5;
+    private int _delayTime = 5;
     private int _timeCoroutine = 1;
     private bool _isEnemyHere;
     private Coroutine _coroutine;
@@ -48,13 +48,11 @@ public class Vampirism : MonoBehaviour
 
     private IEnumerator StealHealth()
     {
-        _heal = _damage / 2;
-
         WaitForSeconds delay = new WaitForSeconds(_timeCoroutine);
 
-        for (int i = 0; i < _timeSteal * Time.deltaTime; i++)
+        for(int i = 0; i < _timeSteal; i++)
         {
-            if (_isEnemyHere == true)
+            if (_isEnemyHere)
             {
                 for (int j = 0; j < _enemiesHealths.Count; j++)
                 {
@@ -63,7 +61,7 @@ public class Vampirism : MonoBehaviour
 
                 _playerHealth.TakeHeal(_heal);
 
-                if (i == _ringTime)
+                if (_timeSteal == _delayTime)
                 {
                     _vampireRing.gameObject.SetActive(false);
                 }
